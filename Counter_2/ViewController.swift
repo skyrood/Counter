@@ -9,12 +9,12 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var incrementButton: UIButton!
-    @IBOutlet weak var resetButton: UIButton!
-    @IBOutlet weak var decrementButton: UIButton!
+    @IBOutlet private weak var incrementButton: UIButton!
+    @IBOutlet private weak var resetButton: UIButton!
+    @IBOutlet private weak var decrementButton: UIButton!
     
-    @IBOutlet weak var counterLabel: UILabel!
-    @IBOutlet weak var counterInfoTextView: UITextView!
+    @IBOutlet private weak var counterLabel: UILabel!
+    @IBOutlet private weak var counterInfoTextView: UITextView!
     
     private var counter: Int = 0
     
@@ -65,19 +65,19 @@ class ViewController: UIViewController {
         renewCounter()
     }
     
-    @IBAction func decrementAction(_ sender: Any) {
+    @IBAction private func decrementAction(_ sender: Any) {
         if (counter > 0) {
             counter -= 1
             counterAction("Значение изменено на -1")
         }
     }
     
-    @IBAction func incrementAction(_ sender: Any) {
+    @IBAction private func incrementAction(_ sender: Any) {
         counter += 1
         counterAction("Значение изменено на +1")
     }
     
-    @IBAction func resetAction(_ sender: Any) {
+    @IBAction private func resetAction(_ sender: Any) {
         if counter > 0 {
             counter = 0
             counterAction("Значение сброшено")
