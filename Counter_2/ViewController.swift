@@ -8,7 +8,8 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+//    Инициализация аутлетов
     @IBOutlet private weak var incrementButton: UIButton!
     @IBOutlet private weak var resetButton: UIButton!
     @IBOutlet private weak var decrementButton: UIButton!
@@ -16,8 +17,24 @@ class ViewController: UIViewController {
     @IBOutlet private weak var counterLabel: UILabel!
     @IBOutlet private weak var counterInfoTextView: UITextView!
     
+//    инициализация значения переменной значения счетчика
     private var counter: Int = 0
+
+//    инициализация начального состояния приложения
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        counterInfoTextView.isEditable = false
+        
+        resetButton.setTitle("Reset", for: .normal)
+        decrementButton.setTitle("-", for: .normal)
+        incrementButton.setTitle("+", for: .normal)
+        counterInfoTextView.text = "История изменений:"
+        
+        renewCounter()
+    }
     
+//    функции, описывающие логику работы приложения
     private func currentDateTime() -> String {
         let currentDate = Date()
         let dateFormatter = DateFormatter()
@@ -50,25 +67,14 @@ class ViewController: UIViewController {
         renewCounter()
         logAction(action: action)
     }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        
-        counterInfoTextView.isEditable = false
-        
-        resetButton.setTitle("Reset", for: .normal)
-        decrementButton.setTitle("-", for: .normal)
-        incrementButton.setTitle("+", for: .normal)
-        counterInfoTextView.text = "История изменений:"
-        
-        renewCounter()
-    }
     
+//    экшены кнопок
     @IBAction private func decrementAction(_ sender: Any) {
         if (counter > 0) {
             counter -= 1
             counterAction("Значение изменено на -1")
+        } else {
+            counterAction("Попытка уменьшить значение счётчика ниже 0")
         }
     }
     
